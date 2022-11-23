@@ -1,6 +1,16 @@
 <?php
 
-include '../src/Controller/AbstractController.php';
+//solicitando ao composer que gerencie o carregamento automagico dos arquivos
+
+use App\Connection\DatabaseConnection;
+
+include_once '../vendor/autoload.php';
+
+include '../config/database.php';
+
+var_dump(
+    DatabaseConnection::abrirConexao()
+);
 
 $rotas = require '../config/routes.php';
 

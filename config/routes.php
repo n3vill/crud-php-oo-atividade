@@ -1,9 +1,9 @@
 <?php
 
-require_once '../src/Controller/AlunoController.php';
-require_once '../src/Controller/CursoController.php';
-require_once '../src/Controller/ProfessorController.php';
-require_once '../src/Controller/SiteController.php';
+use App\Controller\AlunoController;
+use App\Controller\CursoController;
+use App\Controller\ProfessorController;
+use App\Controller\SiteController;
 
 function criarRota(string $controllerNome, string $methodNome): array
 {
