@@ -6,10 +6,8 @@ use DateTime; //importando a classe interna do PHP DateTime
 
 //aqui vai ficar a definição do caminho até essa classe
 
-class Aluno
+class Aluno extends Pessoa
 {
-    public string $nome;
-    public string $cpf;
     public int $matricula;
     public DateTime $dataNascimento;
     public bool $status;
