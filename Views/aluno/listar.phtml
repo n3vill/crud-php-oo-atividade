@@ -18,13 +18,15 @@
         </thead>
         <tbody>
             <?php
-                foreach ($alunos as $aluno) {
-                    echo "
-                        <tr>
-                            <td>{$aluno->id}</td>
-                            <td>{$aluno->nome}</td>
-                        </tr>
-                    ";
+                if(isset($alunos) && sizeOf($alunos) > 0){
+                    foreach ($alunos as $aluno) {
+                        echo "
+                            <tr>
+                                <td>{$aluno->id}</td>
+                                <td>{$aluno->nome}</td>
+                            </tr>
+                        ";
+                    }
                 }
             ?>
         </tbody>

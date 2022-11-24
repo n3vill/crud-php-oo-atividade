@@ -13,6 +13,15 @@ CREATE TABLE tb_alunos (
     cpf CHAR(11) UNIQUE NOT NULL
 );
 
+CREATE TABLE tb_professores (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    endereco VARCHAR(45) NOT NULL,
+    formacao VARCHAR(45) NOT NULL,
+    status TINYINT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    cpf CHAR(11) UNIQUE NOT NULL
+);
+
 INSERT INTO tb_alunos 
 (nome, matricula, email, status, genero, dataNascimento, cpf)
 VALUES
@@ -21,3 +30,10 @@ VALUES
 ('Joaquim', '5534123', 'joaquim@email.com', true, 'Não informado', '1997-06-27', '09812312390');
 
 SELECT * FROM tb_alunos;
+
+INSERT INTO tb_professores
+(nome, endereco, formacao, status, cpf)
+VALUES
+('Alessandro','Rua barca semi nova 123', 'HTML, CSS, JS, React', true, '12345612345'),
+('Allan','Rua idelfonso albano 222, ap 1403', 'SABE TUDO, BRABISSIMO', true, '99999999999'),
+('Gleidson', 'Rua oscar frança 88', 'Formado nas ruas', true, '22222222222');
