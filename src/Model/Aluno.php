@@ -14,4 +14,11 @@ class Aluno extends Pessoa
     public string $dataNascimento;
     public bool $status;
     public string $genero; //enum
+
+    // public function __construct(string $nome = '', string $dataNascimento = '')
+    // {
+    //     $this->nome = ucwords(strtolower($nome));
+    //     $this->dataNascimento = $dataNascimento;
+    // }
 }
+
