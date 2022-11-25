@@ -60,28 +60,29 @@ class AlunoController extends AbstractController
         $id = $_GET['id'];
         $rep = new AlunoRepository();
         $aluno = $rep->buscarUm($id);
-        if (true === empty($_POST)) {
-            $this->render('aluno/editar', [$aluno]);
-        }
-
-        $aluno->nome = $_POST['nome']; $aluno->dataNascimento = $_POST['nascimento']; $aluno->cpf = $_POST['cpf']; $aluno->email = $_POST['email'];
-        $aluno->genero = $_POST['genero'];
-
-        try {
-            $rep->atualizar($aluno, $id);
-        } catch (Exception $exception) {
-            if (true === str_contains($exception->getMessage(), 'cpf')) {
-                die('CPF ja existe');
+        $this->render('aluno/editar', [$aluno]);
+        if (false === empty($_POST)) {
+            $aluno->nome = $_POST['nome'];
+            $aluno->dataNascimento = $_POST['nascimento'];
+            $aluno->cpf = $_POST['cpf'];
+            $aluno->email = $_POST['email'];
+            $aluno->genero = $_POST['genero'];
+    
+            try {
+                $rep->atualizar($aluno, $id);
+            } catch (Exception $exception) {
+                if (true === str_contains($exception->getMessage(), 'cpf')) {
+                    die('CPF ja existe');
+                }
+    
+                if (true === str_contains($exception->getMessage(), 'email')) {
+                    die('Email ja existe');
+                }
+    
+                die('Vish, aconteceu um erro');
             }
-
-            if (true === str_contains($exception->getMessage(), 'email')) {
-                die('Email ja existe');
-            }
-
-            die('Vish, aconteceu um erro');
+            $this->redirect('/alunos/listar');
         }
-
-        $this->redirect('/alunos/listar');
     }
 
     public function excluir(): void
