@@ -22,6 +22,15 @@ CREATE TABLE tb_professores (
     cpf CHAR(11) UNIQUE NOT NULL
 );
 
+
+CREATE TABLE tb_user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    profile VARCHAR(20) NOT NULL
+);
+
 INSERT INTO tb_alunos 
 (nome, matricula, email, status, genero, dataNascimento, cpf)
 VALUES
