@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\AlunoController;
+use App\Controller\AuthController;
 use App\Controller\CursoController;
 use App\Controller\ProfessorController;
 use App\Controller\SiteController;
@@ -25,6 +26,9 @@ $rotas = [
 
     '/usuarios/listar' => criarRota(UserController::class, 'list'),
     '/usuarios/novo' => criarRota(UserController::class, 'add'),
+
+    '/login' => criarRota(AuthController::class, 'login'),
+    '/desconectar' => criarRota(AuthController::class, 'logout'),
 
     '/cursos/listar' => criarRota(CursoController::class, 'listar'),
     '/cursos/novo' => criarRota(CursoController::class, 'cadastrar'),
