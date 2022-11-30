@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Security\UserSecurity;
+// use App\Security\UserSecurity;
 
 abstract class AbstractController
 {
@@ -28,10 +28,10 @@ abstract class AbstractController
         header('location: '. $local);
     }
 
-    public function checkLogin()
-    {
-        if(UserSecurity::isLogged() === false){
-            $this->redirect('/login');
-        }
-    }
+    // public function checkLogin()
+    // {
+    //     if(UserSecurity::isLogged() === false){
+    //         $this->redirect('/login');
+    //     }
+    // }
 }

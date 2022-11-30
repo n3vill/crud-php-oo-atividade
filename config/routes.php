@@ -1,13 +1,13 @@
 <?php
 
 use App\Controller\AlunoController;
-use App\Controller\Api\AlunoApiController;
-use App\Controller\Api\UserApiController;
 use App\Controller\AuthController;
 use App\Controller\CursoController;
 use App\Controller\ProfessorController;
 use App\Controller\SiteController;
 use App\Controller\UserController;
+use App\Controller\CategoriaController;
+
 
 function criarRota(string $controllerNome, string $methodNome): array
 {
@@ -36,18 +36,19 @@ $rotas = [
     '/cursos/novo' => criarRota(CursoController::class, 'cadastrar'),
     '/cursos/editar' => criarRota(CursoController::class, 'editar'),
     '/cursos/excluir' => criarRota(CursoController::class, 'excluir'),
+    '/cursos/relatorio' => criarRota(CursoController::class, 'relatorio'),
+
 
     '/professores/listar' => criarRota(ProfessorController::class, 'listar'),
     '/professores/novo' => criarRota(ProfessorController::class, 'cadastrar'),
     '/professores/editar' => criarRota(ProfessorController::class, 'editar'),
     '/professores/excluir' => criarRota(ProfessorController::class, 'excluir'),
+    '/professores/relatorio' => criarRota(ProfessorController::class, 'relatorio'),
 
-
-    /* ------ Rotas da API ------ */
-    '/api/alunos' => criarRota(AlunoApiController::class, 'getAll'),
-
-    '/api/users' => criarRota(UserApiController::class, 'getAll'),
-    /* -------------------------- */
+    '/categorias/listar' => criarRota(CategoriaController::class, 'listar'),
+    '/categorias/novo' => criarRota(CategoriaController::class, 'cadastrar'),
+    '/categorias/editar' => criarRota(CategoriaController::class, 'editar'),
+    '/categorias/relatorio' => criarRota(CategoriaController::class, 'relatorio'),
 ];
 
 return $rotas;

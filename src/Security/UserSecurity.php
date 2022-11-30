@@ -1,5 +1,5 @@
 <?php
-
+/*
 declare(strict_types=1);
 
 namespace App\Security;
@@ -28,4 +28,4 @@ abstract class UserSecurity
     {
         return $_SESSION['user_escola'];
     } 
-}
+}   

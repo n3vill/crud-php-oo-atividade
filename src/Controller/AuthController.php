@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Notification\WebNotification;
 use App\Repository\UserRepository;
 use App\Security\UserSecurity;
-
 class AuthController extends AbstractController
 {
     private UserRepository $userRepository;
@@ -26,18 +24,14 @@ class AuthController extends AbstractController
             $user = $this->userRepository->findOneByEmail($email);
 
             if (false === $user) {
-                WebNotification::add('Email não existe', 'danger');
-                $this->redirect('/login');
-                return;
+                die('Email não existe');
             }
 
             if (false === password_verify($password, $user->password)) {
-                WebNotification::add('Senha incorreta', 'danger');
-                $this->redirect('/login');
-                return;
+                die('Senha incorreta');
             }
 
-            UserSecurity::connect($user);
+            // UserSecurity::connect($user);
 
             $this->redirect('/alunos/listar');
 
@@ -48,10 +42,10 @@ class AuthController extends AbstractController
         $this->render('auth/login', navbar: false); // apenas a partir do PHP8
     }
 
-    public function logout(): void
-    {
-        UserSecurity::disconnect();
+    // public function logout(): void
+    // {
+    //     UserSecurity::disconnect();
 
-        $this->redirect('/login');
-    }
+    //     $this->redirect('/login');
+    // }
 }

@@ -9,14 +9,16 @@
         <a href="/cursos/listar" class="btn btn-outline-dark">Cursos</a> 
 
         <a href="/usuarios/listar" class="btn btn-outline-dark">Usuários</a> 
+
+        <a href="/categorias/listar" class="btn btn-outline-dark">Categorias</a> 
+
     </div>
 
     <div class="text-end">
-        Bem vinde <?php echo App\Security\UserSecurity::getUser()->name; ?>
+        Bem vinde <?php
+        //  echo App\Security\UserSecurity::getUser()->name; ?>
         <a href="/desconectar" class="btn btn-outline-danger">Desconectar</a>
     </div>
 </nav>
 
 <hr>
-
-<?php App\Notification\WebNotification::show(); ?>
