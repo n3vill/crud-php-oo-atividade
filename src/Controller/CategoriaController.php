@@ -39,7 +39,7 @@ class CategoriaController extends AbstractController
         $categoria->nome = $_POST['nome'];
 
         $repository = new CategoriaRepository();
-        
+
         try {
             $repository->inserir($categoria);
         } catch (Exception $exception) {
@@ -89,32 +89,11 @@ class CategoriaController extends AbstractController
             return $resultado;
     }
 
-    public function relatorio(): void
+    public function gerandoPDF():void
     {
-        $hoje = date('d/m/Y');
-        $categorias = $this->repository->buscarTodos();
-        $design = "
-        <h1>Relatorio de Categoria</h1>
-        <hr>
-        <em>Gerando em {$hoje}</em>
-        <hr>
-        <table border='1' width='100%' style='margin-top: 30px;'>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                </tr>
-            </thead>
-            <tbody>
-            ".$this->redirecionar($categorias)."
-            </tbody>
-        </table>
-        ";
-
-        $dompdf = new Dompdf();
-        $dompdf->setPaper('A4', 'portrait'); 
-        $dompdf->loadHtml(($design)); 
-        $dompdf->render();
-        $dompdf->stream('Relatorio-Categorias.pdf', ['Attachment' => 0]);
+       $dados = $this->repository->buscarTodos();
+       $this->relatorio("categoria", [
+           'categorias' => $dados,
+       ]);
     }
 }

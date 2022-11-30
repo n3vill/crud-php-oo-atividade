@@ -113,35 +113,11 @@ class CursoController extends AbstractController
         return $resultado;
     }
 
-    public function relatorio(): void
+    public function gerandoPDF():void
     {
-        $hoje = date('d/m/Y');
-        $cursos = $this->repository->buscarTodos();
-        $design =  "
-            <h1>Relatorio de Cursos</h1>
-            <hr>
-            <em>Gerado em {$hoje}</em>
-            <br>
-            <table border='1' width='100%' style='margin-top: 30px;'>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Status</th>
-                        <th>Descrição</th>
-                        <th>Carga Horaria</th>
-                        <th>Categoria</th>
-                    </tr>
-                </thead>
-                <tbody>
-                ".$this->renderizar($cursos)."
-                </tbody>
-            </table>
-        ";
-        $dompdf = new Dompdf();
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->loadHtml($design);
-        $dompdf->render();
-        $dompdf->stream('relatorio-cursos.pdf', ['Attachment' => 0,]);
+       $dados = $this->repository->buscarTodos();
+       $this->relatorio("curso", [
+           'cursos' => $dados,
+       ]);
     }
 }
