@@ -47,4 +47,4 @@ Certifique-se que um diretório chamado **/vendor** foi criado.
 
 ### Banco de Dados
 
-
+>>> O banco de dados é do tipo relacional e contém as tabelas com até 2 níveis de normatização.
