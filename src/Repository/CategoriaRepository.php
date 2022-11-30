@@ -10,42 +10,65 @@ use PDO;
 
 class CategoriaRepository implements RepositoryInterface
 {
+    public const TABLE = 'tb_categorias';
 
-    public const TABLE = "tb_categorias";
+    public PDO $pdo;
+
+    public function __construct()
+    {
+        $this->pdo = DatabaseConnection::abrirConexao();
+    }
 
     public function buscarTodos(): iterable
     {
-        $conexao = DatabaseConnection::abrirConexao();
+        $sql = 'SELECT * FROM ' . self::TABLE;
 
-        $sql = "SELECT * FROM ".self::TABLE;
+        //preparando para executar no banco
+        $query = $this->pdo->query($sql);
 
-        $query = $conexao->query($sql);
+        //executando o comando lá no banco de dados
+        $query->execute(); 
 
-        $query->execute();
-
-        return $query->fetchAll(PDO::FETCH_CLASS, Categoria::class);
+        return $query->fetchAll(PDO::FETCH_CLASS, Categoria::class); //pegando os dados e tranformando em array
     }
 
-    public function buscarUm(string $id): ?object
+    public function buscarUm(string $id): object
     {
-        return new \stdClass();
+        $sql = "SELECT * FROM ".self::TABLE." WHERE id = '{$id}'";
+        $query = $this->pdo->query($sql);
+        $query->execute();
+        return $query->fetchObject(Categoria::class); 
     }
 
     public function inserir(object $dados): object
     {
+        $sql = "INSERT INTO " . self::TABLE . 
+            "(nome) " . 
+            " VALUES (
+                '{$dados->nome}'
+            );";
+
+        $this->pdo->query($sql);
+
         return $dados;
     } 
 
-    public function atualizar(object $dados, string $id): object
+    public function atualizar(object $novosDados, string $id): object
     {
-        return $dados;
+        $sql = "UPDATE " . self::TABLE . 
+            " SET 
+                nome='{$novosDados->nome}'
+            WHERE id = '{$id}';";
+
+        $this->pdo->query($sql);
+
+        return $novosDados;
     }
 
     public function excluir(string $id): void
     {
-        $conexao = DatabaseConnection::abrirConexao();
         $sql = "DELETE FROM ".self::TABLE." WHERE id = '{$id}'";
-        $query = $conexao->query($sql);
+        $query = $this->pdo->query($sql);
         $query->execute();
     }
 }

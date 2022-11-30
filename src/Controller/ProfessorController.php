@@ -39,7 +39,18 @@ class ProfessorController extends AbstractController
 
     public function editar(): void
     {
-        
+            $id = $_GET['id'];
+            $rep = new ProfessorRepository();
+            $professor = $rep->buscarUm($id);
+            $this->render('professor/editar', [$professor]);
+            if (false === empty($_POST)) {
+            $professor->nome = $_POST['nome'];
+            $professor->cpf = $_POST['cpf'];
+
+            $rep->atualizar($professor, $id);
+
+            $this->redirect('/professores/listar');
+        }
     }
 
     public function relatorio(): void

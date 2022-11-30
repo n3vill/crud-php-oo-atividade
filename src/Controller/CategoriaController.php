@@ -37,35 +37,34 @@ class CategoriaController extends AbstractController
 
         $categoria = new Categoria();
         $categoria->nome = $_POST['nome'];
-        $categoria->vagas = $_POST['vagas'];
-        $categoria->localidade = $_POST['localidade'];
 
-        // $repository = new CategoriaRepository();
+        $repository = new CategoriaRepository();
+        
         try {
-            $this->repository->inserir($categoria);
-        } catch (Exception) {
-           
+            $repository->inserir($categoria);
+        } catch (Exception $exception) {
+            if (true === str_contains($exception->getMessage(), 'categoria')) {
+                die('Esta categoria já existe');
+            }
+            
+            die('Vish, aconteceu um erro');
         }
+        
+
         $this->redirect('/categorias/listar');
     }
 
     public function editar(): void
     {
         $id = $_GET['id'];
-        // $repository = new CategoriaRepository();
-        $categoria = $this->repository->buscarUm($id);
+        $rep = new CategoriaRepository();
+        $categoria = $rep->buscarUm($id);
         $this->render('categoria/editar', [$categoria]);
 
         if (false === empty($_POST)) {
             $categoria->nome = $_POST['nome'];
-            $categoria->vagas = $_POST['vagas'];
-            $categoria->localidade = $_POST['localidade'];
+            $rep->atualizar($categoria, $id);
 
-            try{
-                $this->repository->atualizar($categoria, $id);
-            } catch(Exception $exception) {
-    
-            }
             $this->redirect('/categorias/listar');
         }
     }

@@ -42,10 +42,10 @@ class AuthController extends AbstractController
         $this->render('auth/login', navbar: false); // apenas a partir do PHP8
     }
 
-    // public function logout(): void
-    // {
-    //     UserSecurity::disconnect();
+    public function logout(): void
+    {
+        UserSecurity::disconnect();
 
-    //     $this->redirect('/login');
-    // }
+        $this->redirect('/login');
+    }
 }

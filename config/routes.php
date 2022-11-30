@@ -18,7 +18,7 @@ function criarRota(string $controllerNome, string $methodNome): array
 }
 
 $rotas = [
-    '/' => criarRota(SiteController::class, 'inicio'),
+    '/' => criarRota(AuthController::class, 'login'),
     
     '/alunos/listar' => criarRota(AlunoController::class, 'listar'),
     '/alunos/novo' => criarRota(AlunoController::class, 'cadastrar'),
@@ -48,7 +48,8 @@ $rotas = [
     '/categorias/listar' => criarRota(CategoriaController::class, 'listar'),
     '/categorias/novo' => criarRota(CategoriaController::class, 'cadastrar'),
     '/categorias/editar' => criarRota(CategoriaController::class, 'editar'),
-    '/categorias/relatorio' => criarRota(CategoriaController::class, 'relatorio'),
+    '/categorias/excluir' => criarRota(CategoriaController::class, 'excluir'),
+    '/categorias/relatorio' => criarRota(CategoriaController::class, 'relatorio')
 ];
 
 return $rotas;

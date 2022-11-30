@@ -13,6 +13,7 @@
             <tr>
                 <th>#ID</th>
                 <th>Nome</th>
+                <th>Descrição</th>
                 <th>Categoria</th>
                 <th>Ações</th>
             </tr>
@@ -25,6 +26,7 @@
                             <tr>
                                 <td>{$curso['curso_id']}</td>
                                 <td>{$curso['curso_nome']}</td>
+                                <td>{$curso['curso_descricao']}</td>
                                 <td>{$curso['categoria_nome']}</td>
                                 <td>
                                     <a href='/cursos/editar?id={$curso['curso_id']}' class='btn btn-warning'>Editar</a>
