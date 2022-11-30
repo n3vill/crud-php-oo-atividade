@@ -55,3 +55,26 @@ Entre no seu cliente de banco de dados, e execute o comando:
 ```sql
 CREATE DATABASE db_escola;
 ```
+
+#### Migrar a estrutura do banco de dados
+Ainda dentro do cliente de banco de dados, copie e cole o conteúdo do arquivo **db.sql** e execute.
+
+Certifique-se que as tabelas foram criadas, executando o comando:
+
+```sql
+SHOW TABLES;
+```
+
+Se o resultado for a lista de tabelas existentes, então pronto!
+
+#### Configure as credenciais de acesso
+Encontre o arquivo **/config/database.php** e edite-o conforme as credenciais do seu usuário do banco de dados.
+
+### Crie o primeiro usuário de acesso
+Dentro do diretório da aplicação, execute no terminal o comando 
+`php config/create-admin.php`;
+
+Isso criará um usuário com as credenciais:
+|Nome|Email|Senha|
+| -  | -   | -   |
+| Administrador | admin@admin.com | 123456 |
