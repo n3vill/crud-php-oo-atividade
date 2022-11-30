@@ -78,3 +78,9 @@ Isso criará um usuário com as credenciais:
 |Nome|Email|Senha|
 | -  | -   | -   |
 | Administrador | admin@admin.com | 123456 |
+
+### Executando a aplicação
+Para executar e testar a aplicação, dentro do terminal execute:
+`php -S localhost:8000 -t public`
+
+Agora acesse o endereço http://localhost:8000 em seu navegador
